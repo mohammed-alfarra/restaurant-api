@@ -1,0 +1,25 @@
+name: Actions CI
+
+on: [push]
+
+jobs:
+  check-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+      - run: echo "Composer dependencies have been installed"
+
+      - name: Check code syntax 
+        run: composer check
+
+      - name: Run test
+        run: vendor/bin/phpunit
+
+      - name: Job status
+        run: echo "Job is ${{ job.status }}."
