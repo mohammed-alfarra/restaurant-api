@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         //testing seeders
         if (! app()->environment('production')) {
             $this->call(UserSeeder::class);
+            $this->call(CategorySeeder::class);
+            $this->call(ItemSeeder::class);
         }
     }
 }
